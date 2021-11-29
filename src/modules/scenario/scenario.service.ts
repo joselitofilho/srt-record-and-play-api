@@ -7,6 +7,7 @@ import { Scenario } from '../../entities/scenario.entity';
 export abstract class IScenarioService {
   abstract findAll(): Promise<Scenario[]>;
   abstract findOneWithRelations(id: number): Promise<Scenario>;
+  abstract save(scenario: Scenario): Promise<Scenario>;
 }
 
 export class ScenarioService extends IScenarioService {
@@ -25,5 +26,9 @@ export class ScenarioService extends IScenarioService {
     return this.scenarioRepository.findOne(id, {
       relations: ['status', 'actions'],
     });
+  }
+
+  save(scenario: Scenario): Promise<Scenario> {
+    return this.scenarioRepository.save(scenario);
   }
 }

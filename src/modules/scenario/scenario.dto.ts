@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { ScenarioStatus } from '../../entities/scenario-status.entity';
 import { Scenario } from '../../entities/scenario.entity';
+import { ActionDto } from '../action/action.dto';
 
 export class ScenarioStatusDto {
   @ApiProperty()
@@ -46,4 +47,33 @@ export class SimpleScenarioDto {
   }
 }
 
-export class FindOneScenarioResponseDto {}
+export class ScenarioDto extends SimpleScenarioDto {
+  @ApiProperty({ type: [ActionDto] })
+  actions: ActionDto[];
+
+  static fromDomain(scenario: Scenario): ScenarioDto {
+    const dto = new ScenarioDto();
+    Object.assign(dto, SimpleScenarioDto.fromDomain(scenario));
+    dto.actions = scenario.actions.map(ActionDto.fromDomain);
+    return dto;
+  }
+}
+
+export class RegisterScenarioDto {
+  @ApiProperty()
+  title: string;
+
+  @ApiProperty()
+  context: string;
+
+  @ApiProperty()
+  isTemplate: boolean;
+
+  toDomain(): Scenario {
+    const scenario = new Scenario();
+    scenario.title = this.title;
+    scenario.context = this.context;
+    scenario.isTemplate = this.isTemplate;
+    return scenario;
+  }
+}
