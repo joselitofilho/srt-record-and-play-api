@@ -1,0 +1,48 @@
+// Project
+{
+  "id": "string",
+  "package": "string",
+  "scenarios": [] //hasMany
+}
+
+// Scenario *
+{
+  "id": "string",
+  "title": "string",
+  "context": "string",
+  "isTemplate": "boolean",
+}
+
+// ScenarioStatus *
+{
+  "id": "string",
+  "scenarioId": "string",
+  "status": "",
+  ...
+}
+
+// Action *
+{
+  "id": "string",
+  "scenarioId": "string",
+  ...
+}
+
+// User (JWT) 
+{
+  "id": "string",
+  "name": "string",
+  "email": "string", //Email
+  "password": "string",
+  "roles": ""// m2m (not now)
+  ...
+}
+
+// Role
+{
+  "id": "string",
+  "name": "string",
+}
+
+
+
