@@ -25,6 +25,8 @@ export class Scenario {
   @OneToMany(() => Action, (action) => action.scenario)
   actions: Action[];
 
-  @OneToOne(() => ScenarioStatus, (status) => status.scenario)
+  @OneToOne(() => ScenarioStatus, (status) => status.scenario, {
+    cascade: true,
+  })
   status: ScenarioStatus;
 }

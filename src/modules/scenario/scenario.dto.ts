@@ -54,7 +54,9 @@ export class ScenarioDto extends SimpleScenarioDto {
   static fromDomain(scenario: Scenario): ScenarioDto {
     const dto = new ScenarioDto();
     Object.assign(dto, SimpleScenarioDto.fromDomain(scenario));
-    dto.actions = scenario.actions.map(ActionDto.fromDomain);
+    dto.actions = scenario.actions
+      ? scenario.actions.map(ActionDto.fromDomain)
+      : [];
     return dto;
   }
 }
@@ -69,11 +71,13 @@ export class RegisterScenarioDto {
   @ApiProperty()
   isTemplate: boolean;
 
-  toDomain(): Scenario {
+  static toDomain(dto: RegisterScenarioDto): Scenario {
     const scenario = new Scenario();
-    scenario.title = this.title;
-    scenario.context = this.context;
-    scenario.isTemplate = this.isTemplate;
+    scenario.title = dto.title;
+    scenario.context = dto.context;
+    scenario.isTemplate = dto.isTemplate;
+    scenario.status = new ScenarioStatus();
+    scenario.status.status = 'idle';
     return scenario;
   }
 }

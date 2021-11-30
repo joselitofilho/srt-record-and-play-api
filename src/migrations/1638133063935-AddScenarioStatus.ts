@@ -8,7 +8,7 @@ export class AddScenarioStatus1638133063935 implements MigrationInterface {
       `CREATE TABLE \`scenario_status\` (\`id\` int NOT NULL AUTO_INCREMENT, \`status\` varchar(255) NOT NULL, \`scenarioId\` int NULL, UNIQUE INDEX \`REL_46bd89d23a8d291bfbd3deba98\` (\`scenarioId\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`,
     );
     await queryRunner.query(
-      `ALTER TABLE \`scenario_status\` ADD CONSTRAINT \`FK_46bd89d23a8d291bfbd3deba98b\` FOREIGN KEY (\`scenarioId\`) REFERENCES \`scenario\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`,
+      `ALTER TABLE \`scenario_status\` ADD CONSTRAINT \`FK_46bd89d23a8d291bfbd3deba98b\` FOREIGN KEY (\`scenarioId\`) REFERENCES \`scenario\`(\`id\`) ON DELETE CASCADE ON UPDATE NO ACTION`,
     );
   }
 

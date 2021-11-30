@@ -24,7 +24,7 @@ export class ScenarioService extends IScenarioService {
 
   findOneWithRelations(id: number): Promise<Scenario> {
     return this.scenarioRepository.findOne(id, {
-      relations: ['status', 'actions'],
+      relations: ['status', 'actions', 'actions.data'],
     });
   }
 
