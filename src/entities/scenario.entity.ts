@@ -22,11 +22,12 @@ export class Scenario {
   @Column({ default: false })
   isTemplate: boolean;
 
-  @OneToMany(() => Action, (action) => action.scenario)
+  @OneToMany(() => Action, (action) => action.scenario, { onDelete: 'CASCADE' })
   actions: Action[];
 
   @OneToOne(() => ScenarioStatus, (status) => status.scenario, {
     cascade: true,
+    onDelete: 'CASCADE',
   })
   status: ScenarioStatus;
 }

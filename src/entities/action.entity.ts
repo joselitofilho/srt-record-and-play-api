@@ -58,7 +58,7 @@ export class Action {
   @Column()
   category: string;
 
-  @OneToOne(() => ActionData, { cascade: true })
+  @OneToOne(() => ActionData, { cascade: true, onDelete: 'CASCADE' })
   @JoinColumn()
   data: ActionData;
 }

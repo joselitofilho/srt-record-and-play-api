@@ -9,8 +9,9 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ActionDto, RegisterActionDto } from './action.dto';
 import { IActionService } from './action.service';
+import { ActionDto } from './dto/action.dto';
+import { RegisterActionDto } from './dto/register-action.dto';
 
 @ApiTags('Actions')
 @Controller('actions')

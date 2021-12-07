@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsString } from 'class-validator';
 import { ScenarioStatus } from '../../entities/scenario-status.entity';
 import { Scenario } from '../../entities/scenario.entity';
-import { ActionDto } from '../action/action.dto';
+import { ActionDto } from '../action/dto/action.dto';
 
 export class ScenarioStatusDto {
   @ApiProperty()
@@ -62,12 +63,15 @@ export class ScenarioDto extends SimpleScenarioDto {
 }
 
 export class RegisterScenarioDto {
+  @IsString()
   @ApiProperty()
   title: string;
 
+  @IsString()
   @ApiProperty()
   context: string;
 
+  @IsBoolean()
   @ApiProperty()
   isTemplate: boolean;
 
@@ -77,7 +81,7 @@ export class RegisterScenarioDto {
     scenario.context = dto.context;
     scenario.isTemplate = dto.isTemplate;
     scenario.status = new ScenarioStatus();
-    scenario.status.status = 'idle';
+    scenario.status.status = 'created';
     return scenario;
   }
 }
