@@ -1,6 +1,6 @@
 module.exports = {
   type: 'mysql',
-  host: 'localhost',
+  host: 'db',
   port: 3306,
   username: 'root',
   password: 'klnmdas89312onlfpgadlsvcm',
@@ -10,5 +10,5 @@ module.exports = {
   cli: {
     migrationsDir: 'src/migrations',
   },
-  synchronize: false,
+  synchronize: true,
 };

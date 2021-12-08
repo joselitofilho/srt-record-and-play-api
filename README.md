@@ -29,12 +29,20 @@
 ## Installation
 
 ```bash
+# with yarn
+$ yarn install
+
+# with npm
 $ npm install
 ```
 
-## Running the app
+## Running the app (locally)
 
 ```bash
+
+# database container
+$ docker-compose up -d db
+
 # development
 $ npm run start
 
@@ -44,6 +52,21 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+## Running the app (Docker)
+
+
+```bash
+# development
+$ docker-compose up -d
+
+```
+
+## Swagger Docs
+
+
+See http://localhost:3000/docs
+
 
 ## Test
 
