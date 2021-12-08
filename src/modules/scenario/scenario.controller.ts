@@ -1,19 +1,26 @@
 import {
+  Body,
   Controller,
   Get,
+  HttpCode,
   HttpException,
   HttpStatus,
   Param,
+  Post,
 } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { SimpleScenarioDto } from './scenario.dto';
+import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  RegisterScenarioDto,
+  ScenarioDto,
+  SimpleScenarioDto,
+} from './scenario.dto';
 import { IScenarioService } from './scenario.service';
 
+@ApiTags('Scenarios')
 @Controller('scenarios')
 export class ScenarioController {
   constructor(private scenarioService: IScenarioService) {}
 
-  @ApiTags('Scenarios')
   @ApiResponse({
     status: 200,
     description: 'Returns a list of registered scenarios',
@@ -25,18 +32,32 @@ export class ScenarioController {
     return scenarios.map(SimpleScenarioDto.fromDomain);
   }
 
-  @ApiTags('Scenarios')
+  @ApiParam({ type: String, name: 'id' })
   @ApiResponse({
     status: 200,
     description: 'Returns a specific scenario with extra details',
-    type: SimpleScenarioDto,
+    type: ScenarioDto,
   })
   @Get(':id')
-  async findOne(@Param('id') id): Promise<SimpleScenarioDto> {
+  async findOne(@Param('id') id): Promise<ScenarioDto> {
     const scenario = await this.scenarioService.findOneWithRelations(id);
     if (!scenario) {
-      throw new HttpException('Invalid Scenario', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Invalid scenario', HttpStatus.BAD_REQUEST);
     }
-    return SimpleScenarioDto.fromDomain(scenario); //TODO: add another DTO with extra details(actions, ...)
+    return ScenarioDto.fromDomain(scenario);
+  }
+
+  @ApiResponse({
+    status: 201,
+    description: 'Register a new scenario',
+    type: SimpleScenarioDto,
+  })
+  @HttpCode(201)
+  @Post()
+  async register(@Body() input: RegisterScenarioDto): Promise<ScenarioDto> {
+    const scenario = await this.scenarioService.save(
+      RegisterScenarioDto.toDomain(input),
+    );
+    return ScenarioDto.fromDomain(scenario);
   }
 }

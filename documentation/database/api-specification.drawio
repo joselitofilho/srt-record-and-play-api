@@ -1,0 +1,63 @@
+<mxfile host="65bd71144e">
+    <diagram id="ddmmuVUZ7nH7tWSB6J92" name="Full Application">
+        <mxGraphModel dx="825" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="135" y="220" width="580" height="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=11;endArrow=none;endFill=0;" edge="1" parent="1" source="3" target="2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="SRT&lt;br&gt;AUTH PROVIDER" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="100" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Record &amp;amp; Play" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=19;" vertex="1" parent="1">
+                    <mxGeometry x="575" y="220" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="" style="edgeStyle=none;html=1;fontSize=11;endArrow=none;endFill=0;" edge="1" parent="1" source="5" target="7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Project" style="whiteSpace=wrap;html=1;fontSize=19;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="280" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;endArrow=none;endFill=0;" edge="1" parent="1" source="6" target="8">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Scenario" style="whiteSpace=wrap;html=1;fontSize=19;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="370" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Action" style="whiteSpace=wrap;html=1;fontSize=19;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="450" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Template" style="whiteSpace=wrap;html=1;fontSize=11;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="515" y="380" width="75" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="ArofB3qa6Lm3qz7EYlXa" name="Current Application">
+        <mxGraphModel dx="825" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="ajaYX4iyUNtW7bKYKzOL-0"/>
+                <mxCell id="ajaYX4iyUNtW7bKYKzOL-1" parent="ajaYX4iyUNtW7bKYKzOL-0"/>
+                <mxCell id="ajaYX4iyUNtW7bKYKzOL-2" value="" style="whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;strokeWidth=2;" vertex="1" parent="ajaYX4iyUNtW7bKYKzOL-1">
+                    <mxGeometry x="135" y="220" width="580" height="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="ajaYX4iyUNtW7bKYKzOL-5" value="Record &amp;amp; Play" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=19;" vertex="1" parent="ajaYX4iyUNtW7bKYKzOL-1">
+                    <mxGeometry x="575" y="220" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ajaYX4iyUNtW7bKYKzOL-9" value="Scenario" style="whiteSpace=wrap;html=1;fontSize=19;strokeWidth=2;" vertex="1" parent="ajaYX4iyUNtW7bKYKzOL-1">
+                    <mxGeometry x="365" y="335" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="ajaYX4iyUNtW7bKYKzOL-12" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=11;endArrow=none;endFill=0;" edge="1" parent="ajaYX4iyUNtW7bKYKzOL-1" source="ajaYX4iyUNtW7bKYKzOL-10" target="ajaYX4iyUNtW7bKYKzOL-9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ajaYX4iyUNtW7bKYKzOL-10" value="Action" style="whiteSpace=wrap;html=1;fontSize=19;strokeWidth=2;" vertex="1" parent="ajaYX4iyUNtW7bKYKzOL-1">
+                    <mxGeometry x="365" y="415" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
