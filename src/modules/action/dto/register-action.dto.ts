@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
+  ArrayMaxSize,
+  ArrayMinSize,
   IsIn,
   IsNumber,
   IsString,
@@ -109,5 +111,18 @@ export class RegisterActionDto {
     action.scenario.id = dto.projectId;
     action.data = actionDataMap[dto.category].toDomain(dto.data);
     return action;
+  }
+}
+
+export class RegisterActionsDto {
+  @ArrayMinSize(1)
+  @ArrayMaxSize(64)
+  @Type(() => RegisterActionDto)
+  @ValidateNested({ each: true, always: true })
+  @ApiProperty({ required: true, type: [RegisterActionDto] })
+  actions: RegisterActionDto[];
+
+  static toDomain(dto: RegisterActionsDto): Action[] {
+    return dto.actions.map(RegisterActionDto.toDomain);
   }
 }

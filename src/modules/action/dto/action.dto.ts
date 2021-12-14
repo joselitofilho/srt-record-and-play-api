@@ -34,3 +34,14 @@ export class ActionDto {
     return dto;
   }
 }
+
+export class ActionsDto {
+  @ApiProperty({ type: [ActionDto] })
+  actions: ActionDto[];
+
+  static fromDomain(actions: Action[]) {
+    const dto = new ActionsDto();
+    dto.actions = actions.map(ActionDto.fromDomain);
+    return dto;
+  }
+}

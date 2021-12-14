@@ -10,27 +10,27 @@ import {
 } from '@nestjs/common';
 import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { IActionService } from './action.service';
-import { ActionDto } from './dto/action.dto';
-import { RegisterActionDto } from './dto/register-action.dto';
+import { ActionDto, ActionsDto } from './dto/action.dto';
+import { RegisterActionsDto } from './dto/register-action.dto';
 
 @ApiTags('Actions')
 @Controller('actions')
 export class ActionController {
   constructor(private actionService: IActionService) {}
 
-  @ApiBody({ type: RegisterActionDto })
+  @ApiBody({ type: RegisterActionsDto })
   @ApiResponse({
     status: 201,
-    description: 'Register a new action',
-    type: ActionDto,
+    description: 'Registers mutiple actions',
+    type: ActionsDto,
   })
   @Post()
   @HttpCode(201)
-  async register(@Body() input: RegisterActionDto): Promise<ActionDto> {
-    const action = await this.actionService.save(
-      RegisterActionDto.toDomain(input),
+  async register(@Body() input: RegisterActionsDto): Promise<ActionsDto> {
+    const actions = await this.actionService.saveMany(
+      RegisterActionsDto.toDomain(input),
     );
-    return ActionDto.fromDomain(action);
+    return ActionsDto.fromDomain(actions);
   }
 
   @ApiParam({ name: 'id', type: Number })

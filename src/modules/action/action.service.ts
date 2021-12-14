@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { Action } from '../../entities/action.entity';
 
 export abstract class IActionService {
-  abstract save(action: Action): Promise<Action>;
+  abstract saveMany(actions: Action[]): Promise<Action[]>;
   abstract delete(id: number): Promise<Action>;
 }
 
@@ -15,8 +15,19 @@ export class ActionService extends IActionService {
     super();
   }
 
-  async save(action: Action): Promise<Action> {
-    return this.actionRepository.save(action);
+  async saveMany(actions: Action[]): Promise<Action[]> {
+    const insertion = await this.actionRepository
+      .createQueryBuilder()
+      .insert()
+      .into(Action)
+      .values(actions)
+      .execute();
+
+    const ids = insertion.identifiers;
+
+    return actions.map((action, index) =>
+      Object.assign(action, { id: ids[index].id }),
+    );
   }
 
   async delete(id: number): Promise<Action> {
