@@ -96,7 +96,7 @@ export class RegisterActionDto {
 
   @IsNumber()
   @ApiProperty()
-  projectId: number;
+  scenarioId: number;
 
   @ValidateNested({ always: true })
   @Type(({ object }) => actionDataMap[object.category])
@@ -108,7 +108,7 @@ export class RegisterActionDto {
     action.type = dto.type;
     action.category = dto.category;
     action.scenario = new Scenario();
-    action.scenario.id = dto.projectId;
+    action.scenario.id = dto.scenarioId;
     action.data = actionDataMap[dto.category].toDomain(dto.data);
     return action;
   }

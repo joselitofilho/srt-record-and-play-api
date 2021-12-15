@@ -1,9 +1,11 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Action } from './action.entity';
 import { ScenarioStatus } from './scenario-status.entity';
@@ -30,4 +32,10 @@ export class Scenario {
     onDelete: 'CASCADE',
   })
   status: ScenarioStatus;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

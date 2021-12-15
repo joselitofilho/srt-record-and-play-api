@@ -1,8 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsString } from 'class-validator';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 import { ScenarioStatus } from '../../entities/scenario-status.entity';
 import { Scenario } from '../../entities/scenario.entity';
 import { ActionDto } from '../action/dto/action.dto';
+
+const RunStatus = {
+  IDLE: 'IDLE',
+  PASSING: 'PASSING',
+  FAILING: 'FAILING',
+  RUNNING: 'RUNNING',
+};
 
 export class ScenarioStatusDto {
   @ApiProperty()
@@ -12,11 +19,13 @@ export class ScenarioStatusDto {
   autoHealingStatus: string;
 
   @ApiProperty()
-  selfHealingStatus: string;
+  autoHealingResponse: string;
 
   static fromDomain(status: ScenarioStatus): ScenarioStatusDto {
     const dto = new ScenarioStatusDto();
-    dto.runStatus = status.status;
+    dto.runStatus = status.runStatus;
+    dto.autoHealingStatus = status.autoHealingStatus || undefined;
+    dto.autoHealingResponse = status.autoHealingResponse || undefined;
     return dto;
   }
 }
@@ -34,8 +43,14 @@ export class SimpleScenarioDto {
   @ApiProperty()
   isTemplate: boolean;
 
-  @ApiProperty()
+  @ApiProperty({ type: ScenarioStatusDto })
   status: ScenarioStatusDto;
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 
   static fromDomain(scenario: Scenario): SimpleScenarioDto {
     const dto = new SimpleScenarioDto();
@@ -43,6 +58,8 @@ export class SimpleScenarioDto {
     dto.title = scenario.title;
     dto.context = scenario.context;
     dto.isTemplate = scenario.isTemplate;
+    dto.createdAt = scenario.createdAt;
+    dto.updatedAt = scenario.updatedAt;
     dto.status = ScenarioStatusDto.fromDomain(scenario.status);
     return dto;
   }
@@ -71,8 +88,9 @@ export class RegisterScenarioDto {
   @ApiProperty()
   context: string;
 
+  @IsOptional()
   @IsBoolean()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   isTemplate: boolean;
 
   static toDomain(dto: RegisterScenarioDto): Scenario {
@@ -81,7 +99,9 @@ export class RegisterScenarioDto {
     scenario.context = dto.context;
     scenario.isTemplate = dto.isTemplate;
     scenario.status = new ScenarioStatus();
-    scenario.status.status = 'created';
+    scenario.status.runStatus = RunStatus.PASSING;
+    scenario.status.autoHealingStatus = RunStatus.IDLE;
+    scenario.status.autoHealingResponse = '';
     return scenario;
   }
 }

@@ -13,7 +13,13 @@ export class ScenarioStatus {
   id: number;
 
   @Column()
-  status: string;
+  runStatus: string;
+
+  @Column()
+  autoHealingStatus: string;
+
+  @Column({ type: 'text' })
+  autoHealingResponse: string;
 
   @OneToOne(() => Scenario, (scenario) => scenario.status)
   @JoinColumn()

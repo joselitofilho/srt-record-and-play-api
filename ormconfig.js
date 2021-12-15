@@ -4,7 +4,7 @@ module.exports = {
   port: 3306,
   username: 'root',
   password: 'klnmdas89312onlfpgadlsvcm',
-  database: 'record_and_play',
+  database: 'waving_test',
   migrations: ['dist/migrations/*.js'],
   entities: ['dist/entities/*.entity.js'],
   cli: {

@@ -5,12 +5,12 @@ services:
         container_name: db
         environment: 
             MYSQL_ROOT_HOST: '%'
-            MYSQL_DATABASE: record_and_play
+            MYSQL_DATABASE: waving_test
             MYSQL_ROOT_PASSWORD: klnmdas89312onlfpgadlsvcm
         restart: unless-stopped
         command: "mysqld --default-authentication-plugin=mysql_native_password"
         volumes:
-            - /var/lib/rp/mysql5.0.6:/var/lib/mysql
+            - /var/lib/wt/mysql5.0.6:/var/lib/mysql
         ports:
             - 3306:3306
         networks:

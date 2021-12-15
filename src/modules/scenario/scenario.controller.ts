@@ -49,7 +49,7 @@ export class ScenarioController {
 
   @ApiResponse({
     status: 201,
-    description: 'Register a new scenario',
+    description: 'Registers a new scenario',
     type: SimpleScenarioDto,
   })
   @HttpCode(201)
