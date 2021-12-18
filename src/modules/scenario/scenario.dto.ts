@@ -4,7 +4,7 @@ import { ScenarioStatus } from '../../entities/scenario-status.entity';
 import { Scenario } from '../../entities/scenario.entity';
 import { ActionDto } from '../action/dto/action.dto';
 
-const RunStatus = {
+export const RunStatus = {
   IDLE: 'IDLE',
   PASSING: 'PASSING',
   FAILING: 'FAILING',
