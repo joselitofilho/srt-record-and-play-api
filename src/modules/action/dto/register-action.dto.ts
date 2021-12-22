@@ -86,7 +86,7 @@ const actionDataMap = {
 };
 
 export class RegisterActionDto {
-  @IsIn(['action', 'assertion'])
+  @IsIn(['step', 'assertion'])
   @ApiProperty()
   type: string;
 
