@@ -8,6 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { toAutoHealingJavaFile } from 'src/helpers/timelineTranslation';
 import { APIError } from 'src/types';
 import { AutoHealingAPI } from '../../services/autohealing';
 import { RunStatus, ScenarioDto } from '../scenario/scenario.dto';
@@ -31,11 +32,14 @@ export class AutohealingController {
       throw new HttpException('Invalid scenario', HttpStatus.NOT_FOUND);
     }
 
-    // TODO(Joselito): Build file content.
-    const fileContent = '';
+    const fileContent = toAutoHealingJavaFile(
+      scenario.actions,
+      scenario.context,
+      scenario.title,
+    );
 
     const response = await AutoHealingAPI.Autohealing.text({
-      content: fileContent,
+      content: fileContent.join('\n'),
     })
       .then(async (): Promise<APIError> => {
         scenario.status.autoHealingStatus = RunStatus.PASSING;
