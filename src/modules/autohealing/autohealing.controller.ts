@@ -38,12 +38,13 @@ export class AutohealingController {
       scenario.title,
     );
 
-    const response = await AutoHealingAPI.Autohealing.text({
+    const error = await AutoHealingAPI.Autohealing.text({
       content: fileContent.join('\n'),
     })
-      .then(async (): Promise<APIError> => {
-        scenario.status.autoHealingStatus = RunStatus.PASSING;
-        scenario.status.autoHealingResponse = `{}`;
+      .then(async ({ data }): Promise<APIError> => {
+        const { status, healings } = data;
+        scenario.status.autoHealingStatus = status;
+        scenario.status.autoHealingResponse = JSON.stringify(healings);
         scenario = await this.scenarioService.save(scenario);
         return { message: 'OK', statusCode: HttpStatus.OK };
       })
@@ -51,7 +52,7 @@ export class AutohealingController {
         return error.response.data;
       });
 
-    const { message, statusCode } = response;
+    const { message, statusCode } = error;
 
     const errorFunctions = {
       [HttpStatus.BAD_REQUEST]: async (): Promise<APIError> => {
